@@ -33,13 +33,16 @@
 					"name": "Accept workplace for new hire"
 				},
 				"7ba66efa-4d2e-47ff-bb5e-86e58b871488": {
-					"name": "Determine Equipment"
+					"name": "Prepare Rules Input"
 				},
 				"abdd4b7e-4934-419d-844e-e7daa896b0c6": {
 					"name": "Merge"
 				},
 				"a8fe5750-1d27-4d9f-acdf-4350134cfc8b": {
 					"name": "Get Buddy List from SFSF"
+				},
+				"f7bdd829-1523-44c8-94cc-17589aed7b38": {
+					"name": " Determine Equipment"
 				}
 			},
 			"gateways": {
@@ -95,6 +98,9 @@
 				},
 				"57199c54-0c15-4210-9040-d62d40e353bc": {
 					"name": "SequenceFlow50"
+				},
+				"9d129990-b1a5-4339-8bd4-870cb43b7acb": {
+					"name": "SequenceFlow51"
 				}
 			},
 			"diagrams": {
@@ -172,7 +178,7 @@
 			"classDefinition": "com.sap.bpm.wfs.ScriptTask",
 			"reference": "/scripts/onboard/DetermineEquipment.js",
 			"id": "scripttask3",
-			"name": "Determine Equipment",
+			"name": "Prepare Rules Input",
 			"documentation": "Identify the required equipment like laptop, mobile to onboarding employee"
 		},
 		"abdd4b7e-4934-419d-844e-e7daa896b0c6": {
@@ -253,7 +259,7 @@
 			"id": "sequenceflow22",
 			"name": "SequenceFlow22",
 			"sourceRef": "7ba66efa-4d2e-47ff-bb5e-86e58b871488",
-			"targetRef": "a337a31f-dda3-452d-9296-9f3f5f9610fc"
+			"targetRef": "f7bdd829-1523-44c8-94cc-17589aed7b38"
 		},
 		"9b8f3946-3102-46d0-ae34-c4143a40016e": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
@@ -334,7 +340,9 @@
 				"eafcbca7-d1be-4896-81fa-c1f49a057df8": {},
 				"4392159f-22d1-456b-9138-2e6cdc3a7d4c": {},
 				"dfe2c1bc-d29b-4e37-be5a-5258075cdf76": {},
-				"fc603043-80e1-482c-b070-a8bdaec8efab": {}
+				"fc603043-80e1-482c-b070-a8bdaec8efab": {},
+				"5948e3b9-ed32-4253-b714-8e85bc746d33": {},
+				"3160f13f-00a5-4dae-9214-7dc7c1548bc4": {}
 			}
 		},
 		"230b9879-ad0f-44ea-b14b-0d03f578364a": {
@@ -468,9 +476,9 @@
 		},
 		"aac5ad4e-1719-408f-9dfe-d8053630d084": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "579.375,250 825.6875,250 825.6875,175.5",
+			"points": "579.375,250 825.6875,250",
 			"sourceSymbol": "c70603d3-3097-4658-b334-38a8358d4991",
-			"targetSymbol": "eb7eadd6-8414-4981-893e-af12d0b08d64",
+			"targetSymbol": "5948e3b9-ed32-4253-b714-8e85bc746d33",
 			"object": "80c472f8-81df-464d-9212-401f9f53c6cf"
 		},
 		"2fa17141-4599-41bf-a7f5-2a959a918fda": {
@@ -541,12 +549,12 @@
 			"terminateeventdefinition": 2,
 			"messageeventdefinition": 1,
 			"hubapireference": 1,
-			"sequenceflow": 50,
+			"sequenceflow": 51,
 			"startevent": 1,
 			"intermediatemessageevent": 1,
 			"endevent": 2,
 			"usertask": 3,
-			"servicetask": 6,
+			"servicetask": 7,
 			"scripttask": 5,
 			"exclusivegateway": 4,
 			"parallelgateway": 5
@@ -557,6 +565,38 @@
 			"api": "PLTUserManagement",
 			"apiName": "User Management",
 			"id": "hubapireference1"
+		},
+		"f7bdd829-1523-44c8-94cc-17589aed7b38": {
+			"classDefinition": "com.sap.bpm.wfs.ServiceTask",
+			"destination": "BUSINESS_RULES",
+			"path": "/rest/v2/rule-services",
+			"httpMethod": "POST",
+			"requestVariable": "${context.rulesPayload}",
+			"responseVariable": "${context.equipment.EquipmentsInfo}",
+			"id": "servicetask7",
+			"name": " Determine Equipment"
+		},
+		"5948e3b9-ed32-4253-b714-8e85bc746d33": {
+			"classDefinition": "com.sap.bpm.wfs.ui.ServiceTaskSymbol",
+			"x": 775.6875,
+			"y": 220,
+			"width": 100,
+			"height": 60,
+			"object": "f7bdd829-1523-44c8-94cc-17589aed7b38"
+		},
+		"9d129990-b1a5-4339-8bd4-870cb43b7acb": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow51",
+			"name": "SequenceFlow51",
+			"sourceRef": "f7bdd829-1523-44c8-94cc-17589aed7b38",
+			"targetRef": "a337a31f-dda3-452d-9296-9f3f5f9610fc"
+		},
+		"3160f13f-00a5-4dae-9214-7dc7c1548bc4": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "825.6875,250 825.6875,154.5",
+			"sourceSymbol": "5948e3b9-ed32-4253-b714-8e85bc746d33",
+			"targetSymbol": "eb7eadd6-8414-4981-893e-af12d0b08d64",
+			"object": "9d129990-b1a5-4339-8bd4-870cb43b7acb"
 		}
 	}
 }

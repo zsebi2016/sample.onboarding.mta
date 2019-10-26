@@ -51,8 +51,5 @@ resources:
       service-plan: app-host
       service: html5-apps-repo
     type: org.cloudfoundry.managed-service
-  - name: workflow_sample_onboarding
-    parameters:
-      service-plan: standard
-      service: workflow
-    type: org.cloudfoundry.managed-service
+  - name: workflow
+    type: org.cloudfoundry.existing-service
