@@ -5,6 +5,27 @@
 			"id": "onboard",
 			"subject": "Onboarding ${context.userId}",
 			"businessKey": "${context.userId}",
+			"customAttributes": [{
+				"id": "jobTitle",
+				"label": "Job Title",
+				"type": "string",
+				"value": "${context.empData.personalInfo.jobTitle}"
+			}, {
+				"id": "country",
+				"label": "Country",
+				"type": "string",
+				"value": "${context.empData.personalInfo.country}"
+			}, {
+				"id": "division",
+				"label": "Division",
+				"type": "string",
+				"value": "${context.empData.personalInfo.division}"
+			}, {
+				"id": "username",
+				"label": "User Name",
+				"type": "string",
+				"value": "${context.empData.personalInfo.username}"
+			}],
 			"name": "onboard",
 			"documentation": "",
 			"lastIds": "600eee18-fc10-4576-982b-74d08fbcb62e",
@@ -43,6 +64,9 @@
 				},
 				"f7bdd829-1523-44c8-94cc-17589aed7b38": {
 					"name": " Determine Equipment"
+				},
+				"311e2517-9b51-4411-aaa7-6e3b1f2555da": {
+					"name": "Enrich Context"
 				}
 			},
 			"gateways": {
@@ -101,6 +125,9 @@
 				},
 				"9d129990-b1a5-4339-8bd4-870cb43b7acb": {
 					"name": "SequenceFlow51"
+				},
+				"77ba4d0e-94c1-47c7-a57c-a4824f7941ba": {
+					"name": "SequenceFlow52"
 				}
 			},
 			"diagrams": {
@@ -342,7 +369,9 @@
 				"dfe2c1bc-d29b-4e37-be5a-5258075cdf76": {},
 				"fc603043-80e1-482c-b070-a8bdaec8efab": {},
 				"5948e3b9-ed32-4253-b714-8e85bc746d33": {},
-				"3160f13f-00a5-4dae-9214-7dc7c1548bc4": {}
+				"3160f13f-00a5-4dae-9214-7dc7c1548bc4": {},
+				"c8bef8af-0dc3-468a-8277-314cdceb7c1c": {},
+				"da0baf7b-46e5-4d09-90e5-1cc3fda4a4e4": {}
 			}
 		},
 		"230b9879-ad0f-44ea-b14b-0d03f578364a": {
@@ -468,7 +497,7 @@
 		},
 		"c70603d3-3097-4658-b334-38a8358d4991": {
 			"classDefinition": "com.sap.bpm.wfs.ui.ScriptTaskSymbol",
-			"x": 529.375,
+			"x": 459.375,
 			"y": 222.5,
 			"width": 100,
 			"height": 55,
@@ -476,7 +505,7 @@
 		},
 		"aac5ad4e-1719-408f-9dfe-d8053630d084": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "579.375,250 825.6875,250",
+			"points": "509.375,251.5 662.6875,251.5",
 			"sourceSymbol": "c70603d3-3097-4658-b334-38a8358d4991",
 			"targetSymbol": "5948e3b9-ed32-4253-b714-8e85bc746d33",
 			"object": "80c472f8-81df-464d-9212-401f9f53c6cf"
@@ -532,7 +561,7 @@
 		},
 		"dfe2c1bc-d29b-4e37-be5a-5258075cdf76": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "419.75,168 419.75,258 553,258",
+			"points": "419.75,168 419.75,205.75 483,205.75 483,258",
 			"sourceSymbol": "8d380226-f84e-4f2d-a3a2-2165afbb4be5",
 			"targetSymbol": "c70603d3-3097-4658-b334-38a8358d4991",
 			"object": "ea06fcda-9a3c-4ed5-9cdb-556e0616322c"
@@ -549,13 +578,13 @@
 			"terminateeventdefinition": 2,
 			"messageeventdefinition": 1,
 			"hubapireference": 1,
-			"sequenceflow": 51,
+			"sequenceflow": 52,
 			"startevent": 1,
 			"intermediatemessageevent": 1,
 			"endevent": 2,
 			"usertask": 3,
 			"servicetask": 7,
-			"scripttask": 5,
+			"scripttask": 6,
 			"exclusivegateway": 4,
 			"parallelgateway": 5
 		},
@@ -578,8 +607,8 @@
 		},
 		"5948e3b9-ed32-4253-b714-8e85bc746d33": {
 			"classDefinition": "com.sap.bpm.wfs.ui.ServiceTaskSymbol",
-			"x": 775.6875,
-			"y": 220,
+			"x": 612.6875,
+			"y": 223,
 			"width": 100,
 			"height": 60,
 			"object": "f7bdd829-1523-44c8-94cc-17589aed7b38"
@@ -589,14 +618,42 @@
 			"id": "sequenceflow51",
 			"name": "SequenceFlow51",
 			"sourceRef": "f7bdd829-1523-44c8-94cc-17589aed7b38",
-			"targetRef": "a337a31f-dda3-452d-9296-9f3f5f9610fc"
+			"targetRef": "311e2517-9b51-4411-aaa7-6e3b1f2555da"
 		},
 		"3160f13f-00a5-4dae-9214-7dc7c1548bc4": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "825.6875,250 825.6875,154.5",
+			"points": "662.6875,252.75 825.6875,252.75",
 			"sourceSymbol": "5948e3b9-ed32-4253-b714-8e85bc746d33",
-			"targetSymbol": "eb7eadd6-8414-4981-893e-af12d0b08d64",
+			"targetSymbol": "c8bef8af-0dc3-468a-8277-314cdceb7c1c",
 			"object": "9d129990-b1a5-4339-8bd4-870cb43b7acb"
+		},
+		"311e2517-9b51-4411-aaa7-6e3b1f2555da": {
+			"classDefinition": "com.sap.bpm.wfs.ScriptTask",
+			"reference": "/scripts/onboard/EnrichContext.js",
+			"id": "scripttask6",
+			"name": "Enrich Context"
+		},
+		"c8bef8af-0dc3-468a-8277-314cdceb7c1c": {
+			"classDefinition": "com.sap.bpm.wfs.ui.ScriptTaskSymbol",
+			"x": 775.6875,
+			"y": 222.5,
+			"width": 100,
+			"height": 60,
+			"object": "311e2517-9b51-4411-aaa7-6e3b1f2555da"
+		},
+		"77ba4d0e-94c1-47c7-a57c-a4824f7941ba": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow52",
+			"name": "SequenceFlow52",
+			"sourceRef": "311e2517-9b51-4411-aaa7-6e3b1f2555da",
+			"targetRef": "a337a31f-dda3-452d-9296-9f3f5f9610fc"
+		},
+		"da0baf7b-46e5-4d09-90e5-1cc3fda4a4e4": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "825.6875,252.5 825.6875,154.5",
+			"sourceSymbol": "c8bef8af-0dc3-468a-8277-314cdceb7c1c",
+			"targetSymbol": "eb7eadd6-8414-4981-893e-af12d0b08d64",
+			"object": "77ba4d0e-94c1-47c7-a57c-a4824f7941ba"
 		}
 	}
 }
