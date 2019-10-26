@@ -27,7 +27,7 @@ modules:
     type: com.sap.application.content
     path: onboarding
     requires:
-      - name: workflow_sample_onboarding
+      - name: workflow
         parameters:
           content-target: true
   - name: acceptworkplace
